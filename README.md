@@ -1,7 +1,7 @@
 # Bash Prompt Generator
 
-[![No build required](https://img.shields.io/badge/build-none-green)](https://neiki.eu/bash-prompt-generator/)
-[![Works in browser](https://img.shields.io/badge/runs-in%20browser-blue)](https://neiki.eu/bash-prompt-generator/)
+[![No build required](https://img.shields.io/badge/build-none-green)](https://neikiri.dev/bash-prompt-generator/)
+[![Works in browser](https://img.shields.io/badge/runs-in%20browser-blue)](https://neikiri.dev/bash-prompt-generator/)
 
 An interactive **Bash PS1 prompt generator** and **Linux prompt builder**. Create custom terminal prompts with colors, Git branch, system info, and formatting—no installation needed. Use the visual canvas to build your prompt and get ready-to-copy code for `~/.bashrc`.
 
@@ -9,7 +9,7 @@ An interactive **Bash PS1 prompt generator** and **Linux prompt builder**. Creat
 
 ![Bash Prompt Generator - interactive PS1 builder with drag-and-drop canvas and live preview](assets/img/screenshot.png)
 
-**Live version:** [https://neiki.eu/bash-prompt-generator/](https://neiki.eu/bash-prompt-generator/)
+**Live version:** [https://neikiri.dev/bash-prompt-generator/](https://neikiri.dev/bash-prompt-generator/)
 
 ---
 
@@ -81,7 +81,7 @@ When one or more elements on the canvas are selected:
 
 ## How to Use the Bash Prompt Generator
 
-1. Open [https://neiki.eu/bash-prompt-generator/](https://neiki.eu/bash-prompt-generator/).
+1. Open [https://neikiri.dev/bash-prompt-generator/](https://neikiri.dev/bash-prompt-generator/).
 2. **Add elements**  
    - **Desktop:** click an element in the left panel, or **drag** it onto the canvas (or between two existing elements).  
    - **Mobile:** tap elements in **Prompt Elements** (at the top).
@@ -106,7 +106,7 @@ The Bash prompt (PS1) is the text shown before each command in a Linux/Unix term
 Use this generator: add the "Git branch" element from the Version Control category, style it if you want, then copy the generated code into your `~/.bashrc` and run `source ~/.bashrc`.
 
 **Is this tool free?**  
-Yes. It runs entirely in your browser at [neiki.eu/bash-prompt-generator](https://neiki.eu/bash-prompt-generator/). No signup or installation required.
+Yes. It runs entirely in your browser at [neikiri.dev/bash-prompt-generator](https://neikiri.dev/bash-prompt-generator/). No signup or installation required.
 
 **Does it work offline?**  
 No. The page must be loaded once from the web. After that, most editing works without a connection, but initial load requires internet.
@@ -124,7 +124,7 @@ No. The page must be loaded once from the web. After that, most editing works wi
 
 ## Author
 
-© 2026 [neiki](https://neiki.eu/) · neikiri@neikiri.cz
+© 2026 [neiki](https://neikiri.dev/) · neikiri@neikiri.cz
 
 ---
 
