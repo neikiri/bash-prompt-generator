@@ -16,17 +16,13 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Bash Prompt Generator – Create Custom PS1 Prompts Online">
     <meta name="twitter:description" content="Visually build a custom Bash PS1 prompt: pick elements like user, host, directory, time, Git branch and exit status, style them with colors, and copy the ready-to-use PS1 code straight into your .bashrc.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap">
     <link rel="stylesheet" href="css/styles.css">
     <script>
     (function() {
         if(localStorage.getItem('theme') !== 'light') document.documentElement.classList.add('dark')
     })();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="js/vendor/sortable.min.js" defer></script>
     <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "WebApplication", "name": "Bash Prompt Generator", "url": "https://neikiri.dev/bash-prompt-generator/", "description": "Visually build a custom Bash PS1 prompt: pick elements like user, host, directory, time, Git branch and exit status, style them with colors, and copy the ready-to-use PS1 code straight into your .bashrc.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Person", "name": "neikiri", "url": "https://neikiri.dev" } } </script>
     <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "HowTo", "name": "How to Install the Generated Bash Prompt", "description": "Apply a PS1 prompt built with Bash Prompt Generator to your Bash configuration.", "step": [ { "@type": "HowToStep", "name": "Copy the generated prompt", "text": "Click Copy to Clipboard in the Prompt Code section of the generator." }, { "@type": "HowToStep", "name": "Open your Bash configuration file", "text": "Run nano ~/.bashrc in your terminal." }, { "@type": "HowToStep", "name": "Add the generated PS1 line", "text": "Paste PS1=\"your generated prompt\" into the file and save it." }, { "@type": "HowToStep", "name": "Reload the configuration", "text": "Run source ~/.bashrc to apply the changes." }, { "@type": "HowToStep", "name": "Verify the result", "text": "Open a new terminal window to confirm the prompt displays correctly." } ] } </script>
 </head>
@@ -45,14 +41,14 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" /> </svg>
                     </a>
-                    <div class="theme-switch" id="themeSwitch" onclick="toggleTheme()" role="switch" aria-label="Toggle dark/light theme"> <i class="fas fa-moon"></i> <i class="fas fa-sun"></i> <span class="theme-switch-thumb"></span> </div>
+                    <div class="theme-switch" id="themeSwitch" onclick="toggleTheme()" role="switch" aria-label="Toggle dark/light theme"> <svg class="icon fa-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg> <svg class="icon fa-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg> <span class="theme-switch-thumb"></span> </div>
                 </div>
             </div>
         </header>
         <div class="main-layout">
             <!-- Left Panel: Prompt Elements -->
             <aside class="left-panel">
-                <button class="panel-toggle" onclick="togglePanel('left')"> <i class="fas fa-chevron-down"></i> Prompt Elements </button>
+                <button class="panel-toggle" onclick="togglePanel('left')"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg> Prompt Elements </button>
                 <h3>Prompt Elements</h3>
                 <div id="elementsPanel"></div>
             </aside>
@@ -77,16 +73,16 @@
                         <h3>Generated PS1</h3> <span class="card-hint">paste into ~/.bashrc</span> </div>
                     <div class="code-output" id="codeOutput"></div>
                     <div class="button-wrapper">
-                        <button class="copy-btn" id="copyBtn"> <i class="fas fa-copy"></i> Copy to Clipboard </button>
-                        <button class="reset-btn" id="resetBtn"> <i class="fas fa-redo"></i> Reset Styles </button>
-                        <button class="delete-btn" id="deleteBtn"> <i class="fas fa-trash"></i> Delete All </button>
+                        <button class="copy-btn" id="copyBtn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg> Copy to Clipboard </button>
+                        <button class="reset-btn" id="resetBtn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" /></svg> Reset Styles </button>
+                        <button class="delete-btn" id="deleteBtn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg> Delete All </button>
                     </div>
                 </section>
             </main>
             <!-- Right Panel: Properties -->
             <aside class="right-panel">
-                <button class="mobile-close-btn" type="button" onclick="closePropertiesDrawer()" aria-label="Close properties"> <i class="fas fa-times"></i> </button>
-                <button class="panel-toggle" onclick="togglePanel('right')"> <i class="fas fa-chevron-down"></i> Element Properties </button>
+                <button class="mobile-close-btn" type="button" onclick="closePropertiesDrawer()" aria-label="Close properties"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg> </button>
+                <button class="panel-toggle" onclick="togglePanel('right')"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg> Element Properties </button>
                 <h3>Element Properties</h3>
                 <div id="propertiesPanel"></div>
             </aside>

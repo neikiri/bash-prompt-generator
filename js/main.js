@@ -1,5 +1,14 @@
 /* ===== elements.js ===== */
-﻿// Element Definitions
+﻿// Inline icon SVGs (replaces Font Awesome to avoid a large blocking CSS request)
+const ICONS = {
+    copy: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+    times: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    trash: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>',
+    chevronDown: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>',
+    chevronUp: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>'
+};
+
+// Element Definitions
 const ELEMENT_CATEGORIES = {
     'Date & Time': [
         { id: 'date', name: 'Date', code: '\\D{%Y-%m-%d}', preview: '2026-03-08', icon: 'DATE' },
@@ -276,10 +285,10 @@ const PREVIEW_DATA = {
                     </div>
                     <div class="element-actions">
                         <button class="btn-icon" title="Duplicate" onclick="event.stopPropagation(); duplicateElement('${elem.id}')">
-                            <i class="fas fa-copy"></i>
+                            ${ICONS.copy}
                         </button>
                         <button class="btn-icon" title="Delete" onclick="event.stopPropagation(); deleteElement('${elem.id}')">
-                            <i class="fas fa-times"></i>
+                            ${ICONS.times}
                         </button>
                     </div>
                 `;
@@ -433,10 +442,10 @@ const PREVIEW_DATA = {
             actionsGroup.innerHTML = `
                 <div class="property-actions-row">
                     <button class="btn-primary" onclick="duplicateSelectedElements()" title="Duplicate Selected">
-                        <i class="fas fa-copy"></i> Duplicate
+                        ${ICONS.copy} Duplicate
                     </button>
                     <button class="btn-danger" onclick="deleteSelectedElements()" title="Delete Selected">
-                        <i class="fas fa-trash"></i> Delete
+                        ${ICONS.trash} Delete
                     </button>
                 </div>
             `;
@@ -482,7 +491,7 @@ const PREVIEW_DATA = {
                 const leftToggle = document.querySelectorAll('.panel-toggle')[0];
                 if (leftToggle) {
                     const isCollapsed = leftPanel.classList.contains('collapsed');
-                    leftToggle.innerHTML = `<i class="fas fa-chevron-${isCollapsed ? 'down' : 'up'}"></i> Prompt Elements`;
+                    leftToggle.innerHTML = `${isCollapsed ? ICONS.chevronDown : ICONS.chevronUp} Prompt Elements`;
                 }
                 return;
             }
@@ -494,9 +503,9 @@ const PREVIEW_DATA = {
 
             if (toggle) {
                 if (panel.classList.contains('active')) {
-                    toggle.innerHTML = `<i class="fas fa-chevron-up"></i> ${panelType === 'left' ? 'Prompt Elements' : 'Element Properties'}`;
+                    toggle.innerHTML = `${ICONS.chevronUp} ${panelType === 'left' ? 'Prompt Elements' : 'Element Properties'}`;
                 } else {
-                    toggle.innerHTML = `<i class="fas fa-chevron-down"></i> ${panelType === 'left' ? 'Prompt Elements' : 'Element Properties'}`;
+                    toggle.innerHTML = `${ICONS.chevronDown} ${panelType === 'left' ? 'Prompt Elements' : 'Element Properties'}`;
                 }
             }
         }
@@ -828,7 +837,7 @@ const PREVIEW_DATA = {
                     btn.textContent = 'Copied!';
                     setTimeout(() => {
                         btn.classList.remove('copied');
-                        btn.innerHTML = '<i class="fas fa-copy"></i> Copy to Clipboard';
+                        btn.innerHTML = `${ICONS.copy} Copy to Clipboard`;
                     }, 2000);
                 });
             };
