@@ -49,7 +49,7 @@
             <!-- Left Panel: Prompt Elements -->
             <aside class="left-panel">
                 <button class="panel-toggle" onclick="togglePanel('left')"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg> Prompt Elements </button>
-                <h3>Prompt Elements</h3>
+                <div class="panel-title">Prompt Elements</div>
                 <div id="elementsPanel"></div>
             </aside>
             <!-- Middle: Canvas -->
@@ -60,17 +60,17 @@
                 </section>
                 <section class="workspace-card canvas-card" aria-label="Prompt structure">
                     <div class="card-head">
-                        <h3>Prompt Structure</h3> <span class="card-hint">click to select · drag to reorder</span> </div>
+                        <div class="panel-title">Prompt Structure</div> <span class="card-hint">click to select · drag to reorder</span> </div>
                     <div class="canvas" id="canvas"></div>
                 </section>
                 <section class="workspace-card special-chars-section" aria-label="Quick characters">
                     <div class="card-head">
-                        <h3 class="special-chars-title">Quick Characters</h3> </div>
+                        <div class="panel-title special-chars-title">Quick Characters</div> </div>
                     <div class="special-chars" id="specialChars"></div>
                 </section>
                 <section class="workspace-card code-inline" aria-label="Generated prompt code">
                     <div class="card-head">
-                        <h3>Generated PS1</h3> <span class="card-hint">paste into ~/.bashrc</span> </div>
+                        <div class="panel-title">Generated PS1</div> <span class="card-hint">paste into ~/.bashrc</span> </div>
                     <div class="code-output" id="codeOutput"></div>
                     <div class="button-wrapper">
                         <button class="copy-btn" id="copyBtn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg> Copy to Clipboard </button>
@@ -83,7 +83,7 @@
             <aside class="right-panel">
                 <button class="mobile-close-btn" type="button" onclick="closePropertiesDrawer()" aria-label="Close properties"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg> </button>
                 <button class="panel-toggle" onclick="togglePanel('right')"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg> Element Properties </button>
-                <h3>Element Properties</h3>
+                <div class="panel-title">Element Properties</div>
                 <div id="propertiesPanel"></div>
             </aside>
         </div>

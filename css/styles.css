@@ -460,7 +460,7 @@ select {
     padding: 12px 18px 0;
 }
 
-.card-head h3 {
+.card-head .panel-title {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 600;
@@ -894,8 +894,8 @@ select {
     overflow-x: hidden;
 }
 
-.left-panel h3,
-.right-panel h3 {
+.left-panel .panel-title,
+.right-panel .panel-title {
     font-family: var(--font-mono);
     font-size: 0.72rem;
     font-weight: 600;
@@ -1253,7 +1253,7 @@ select {
         margin-bottom: 0;
     }
 
-    .left-panel h3 {
+    .left-panel .panel-title {
         display: none;
     }
 
