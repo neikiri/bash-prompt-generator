@@ -64,6 +64,42 @@ html:not(.dark) .theme-switch .fa-moon {
     color: #bdc3c7;
 }
 
+/* ===================================
+   GitHub link
+   =================================== */
+
+.github-link {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: #94a3b8;
+    z-index: 10;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+    color: #e2e8f0;
+    box-shadow: 0 0 10px 1px rgba(74, 222, 128, 0.45);
+}
+
+html:not(.dark) .github-link {
+    color: #64748b;
+}
+
+html:not(.dark) .github-link:hover,
+html:not(.dark) .github-link:focus-visible {
+    color: #2c3e50;
+    box-shadow: 0 0 10px 1px rgba(26, 127, 55, 0.35);
+}
+
 html:not(.dark) .theme-switch .fa-sun {
     color: #f59e0b;
 }
@@ -425,6 +461,17 @@ html:not(.dark) .theme-switch-thumb {
 
     html:not(.dark) .theme-switch-thumb {
         left: calc(100% - 21px);
+    }
+
+    .github-link {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        order: 4;
+        margin-top: 4px;
+        width: 28px;
+        height: 28px;
     }
 }
 
