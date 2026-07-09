@@ -171,6 +171,28 @@ select {
     margin-top: 40px;
 }
 
+.page-info-toc {
+    max-width: 720px;
+    margin: 0 auto 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+}
+
+.page-info-toc a {
+    color: var(--text-2);
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+}
+
+.page-info-toc a:hover,
+.page-info-toc a:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
 .about-bash {
     max-width: 720px;
     margin: 0 auto 44px;

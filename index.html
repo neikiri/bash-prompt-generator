@@ -33,6 +33,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "WebApplication", "name": "Bash Prompt Generator", "url": "https://neikiri.dev/bash-prompt-generator/", "description": "Visually build a custom Bash PS1 prompt: pick elements like user, host, directory, time, Git branch and exit status, style them with colors, and copy the ready-to-use PS1 code straight into your .bashrc.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Person", "name": "neikiri", "url": "https://neikiri.dev" } } </script>
+    <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "HowTo", "name": "How to Install the Generated Bash Prompt", "description": "Apply a PS1 prompt built with Bash Prompt Generator to your Bash configuration.", "step": [ { "@type": "HowToStep", "name": "Copy the generated prompt", "text": "Click Copy to Clipboard in the Prompt Code section of the generator." }, { "@type": "HowToStep", "name": "Open your Bash configuration file", "text": "Run nano ~/.bashrc in your terminal." }, { "@type": "HowToStep", "name": "Add the generated PS1 line", "text": "Paste PS1=\"your generated prompt\" into the file and save it." }, { "@type": "HowToStep", "name": "Reload the configuration", "text": "Run source ~/.bashrc to apply the changes." }, { "@type": "HowToStep", "name": "Verify the result", "text": "Open a new terminal window to confirm the prompt displays correctly." } ] } </script>
 </head>
 
 <body>
@@ -97,7 +98,15 @@
         </div>
     </div>
     <div class="page-info">
-        <section class="about-bash">
+        <nav class="page-info-toc" aria-label="Guide sections">
+            <a href="#what-is-a-bash-prompt">What is a Bash Prompt?</a>
+            <a href="#intro">Overview</a>
+            <a href="#how-tool-works">How It Works</a>
+            <a href="#examples">Examples</a>
+            <a href="#variables">PS1 Variables</a>
+            <a href="#how-to-install">Installation</a>
+        </nav>
+        <section id="what-is-a-bash-prompt" class="about-bash">
             <h2>What is a Bash Prompt?</h2>
             <p> A Bash prompt is the command line indicator displayed in Linux terminals. It is controlled by the <code>PS1</code> variable and defines how the shell prompt appears before each command. With this Bash Prompt Generator you can visually create a custom PS1 prompt with colors, system information, Git context and formatting. </p>
         </section>
