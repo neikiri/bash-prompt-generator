@@ -1,4 +1,37 @@
 /* ===================================================
+   Header actions (GitHub link + theme switch)
+   =================================================== */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: var(--text-3);
+    transition: color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.github-link:hover,
+.github-link:focus-visible {
+    color: var(--text);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+html:not(.dark) .github-link:hover,
+html:not(.dark) .github-link:focus-visible {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.18);
+}
+
+/* ===================================================
    Theme switch
    (all other theming is handled by the token
    overrides on html.dark in base.css)
