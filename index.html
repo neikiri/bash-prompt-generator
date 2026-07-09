@@ -54,7 +54,118 @@
             <aside class="left-panel">
                 <button class="panel-toggle" onclick="togglePanel('left')"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg> Prompt Elements </button>
                 <div class="panel-title">Prompt Elements</div>
-                <div id="elementsPanel"></div>
+                <div id="elementsPanel">
+                    <div class="category">
+                        <div class="category-title">Date &amp; Time</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Date">Date</button>
+                            <button class="element-btn" title="Custom date / time">Custom date / time</button>
+                            <button class="element-btn" title="Time (24-hour)">Time (24-hour)</button>
+                            <button class="element-btn" title="Time (12-hour)">Time (12-hour)</button>
+                            <button class="element-btn" title="Time (AM/PM)">Time (AM/PM)</button>
+                            <button class="element-btn" title="Time (24h no seconds)">Time (24h no seconds)</button>
+                            <button class="element-btn" title="Unix timestamp">Unix timestamp</button>
+                            <button class="element-btn" title="Time zone">Time zone</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">User</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Username">Username</button>
+                            <button class="element-btn" title="User / Root indicator">User / Root indicator</button>
+                            <button class="element-btn" title="User ID">User ID</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Host &amp; System</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Hostname (short)">Hostname (short)</button>
+                            <button class="element-btn" title="Hostname (full)">Hostname (full)</button>
+                            <button class="element-btn" title="Shell name">Shell name</button>
+                            <button class="element-btn" title="Bash version">Bash version</button>
+                            <button class="element-btn" title="Bash version (full)">Bash version (full)</button>
+                            <button class="element-btn" title="Terminal device">Terminal device</button>
+                            <button class="element-btn" title="Shell level">Shell level</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Directory</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Current directory (full path)">Current directory (full path)</button>
+                            <button class="element-btn" title="Current directory (folder name)">Current directory (folder name)</button>
+                            <button class="element-btn" title="Path with home shortcut">Path with home shortcut</button>
+                            <button class="element-btn" title="Previous directory">Previous directory</button>
+                            <button class="element-btn" title="Directory depth">Directory depth</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Commands &amp; History</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Command history number">Command history number</button>
+                            <button class="element-btn" title="Command number in session">Command number in session</button>
+                            <button class="element-btn" title="Last command exit status">Last command exit status</button>
+                            <button class="element-btn" title="Success indicator">Success indicator</button>
+                            <button class="element-btn" title="Error indicator">Error indicator</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Processes</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Background jobs count">Background jobs count</button>
+                            <button class="element-btn" title="Shell process ID">Shell process ID</button>
+                            <button class="element-btn" title="Parent process ID">Parent process ID</button>
+                            <button class="element-btn" title="Running processes count">Running processes count</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Version Control</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Git branch">Git branch</button>
+                            <button class="element-btn" title="Git commit hash">Git commit hash</button>
+                            <button class="element-btn" title="Git repository name">Git repository name</button>
+                            <button class="element-btn" title="Git status (clean / dirty)">Git status (clean / dirty)</button>
+                            <button class="element-btn" title="Git staged files count">Git staged files count</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Development Environments</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Python virtual environment">Python virtual environment</button>
+                            <button class="element-btn" title="Node.js version">Node.js version</button>
+                            <button class="element-btn" title="Ruby version">Ruby version</button>
+                            <button class="element-btn" title="Go version">Go version</button>
+                            <button class="element-btn" title="Docker context">Docker context</button>
+                            <button class="element-btn" title="Kubernetes context">Kubernetes context</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Network</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Local IP address">Local IP address</button>
+                            <button class="element-btn" title="Public IP address">Public IP address</button>
+                            <button class="element-btn" title="SSH session indicator">SSH session indicator</button>
+                            <button class="element-btn" title="Current network interface">Current network interface</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Layout</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="New line">New line</button>
+                            <button class="element-btn" title="Carriage return">Carriage return</button>
+                            <button class="element-btn" title="Space">Space</button>
+                            <button class="element-btn" title="Tab">Tab</button>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="category-title">Characters</div>
+                        <div class="elements-grid">
+                            <button class="element-btn" title="Bell / beep">Bell / beep</button>
+                            <button class="element-btn" title="Escape character">Escape character</button>
+                            <button class="element-btn" title="Backslash character">Backslash character</button>
+                            <button class="element-btn" title="Pipe character">Pipe character</button>
+                        </div>
+                    </div>
+                </div>
             </aside>
             <!-- Middle: Canvas -->
             <main class="canvas-section">
@@ -70,7 +181,40 @@
                 <section class="workspace-card special-chars-section" aria-label="Quick characters">
                     <div class="card-head">
                         <div class="panel-title special-chars-title">Quick Characters</div> </div>
-                    <div class="special-chars" id="specialChars"></div>
+                    <div class="special-chars" id="specialChars">
+                        <button class="char-btn" title="Space">Space</button>
+                        <button class="char-btn" title="~">~</button>
+                        <button class="char-btn" title="!">!</button>
+                        <button class="char-btn" title="?">?</button>
+                        <button class="char-btn" title="@">@</button>
+                        <button class="char-btn" title="#">#</button>
+                        <button class="char-btn" title="$">$</button>
+                        <button class="char-btn" title="%">%</button>
+                        <button class="char-btn" title="^">^</button>
+                        <button class="char-btn" title="&amp;">&amp;</button>
+                        <button class="char-btn" title="*">*</button>
+                        <button class="char-btn" title="(">(</button>
+                        <button class="char-btn" title=")">)</button>
+                        <button class="char-btn" title="{">{</button>
+                        <button class="char-btn" title="}">}</button>
+                        <button class="char-btn" title="[">[</button>
+                        <button class="char-btn" title="]">]</button>
+                        <button class="char-btn" title="-">-</button>
+                        <button class="char-btn" title="_">_</button>
+                        <button class="char-btn" title="+">+</button>
+                        <button class="char-btn" title="=">=</button>
+                        <button class="char-btn" title="/">/</button>
+                        <button class="char-btn" title="\">\</button>
+                        <button class="char-btn" title="|">|</button>
+                        <button class="char-btn" title=",">,</button>
+                        <button class="char-btn" title=".">.</button>
+                        <button class="char-btn" title=":">:</button>
+                        <button class="char-btn" title=";">;</button>
+                        <button class="char-btn" title="&quot;">&quot;</button>
+                        <button class="char-btn" title="'">'</button>
+                        <button class="char-btn" title="&lt;">&lt;</button>
+                        <button class="char-btn" title="&gt;">&gt;</button>
+                    </div>
                 </section>
                 <section class="workspace-card code-inline" aria-label="Generated prompt code">
                     <div class="card-head">
@@ -88,7 +232,9 @@
                 <button class="mobile-close-btn" type="button" onclick="closePropertiesDrawer()" aria-label="Close properties"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg> </button>
                 <button class="panel-toggle" onclick="togglePanel('right')"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg> Element Properties </button>
                 <div class="panel-title">Element Properties</div>
-                <div id="propertiesPanel"></div>
+                <div id="propertiesPanel">
+                    <div class="no-selection">Select an element to edit properties</div>
+                </div>
             </aside>
         </div>
     </div>
