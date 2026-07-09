@@ -1,96 +1,255 @@
-﻿* {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ===================================================
+   Design tokens + foundations
+   =================================================== */
+
+:root {
+    --font-ui: 'IBM Plex Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+
+    /* Light theme */
+    --bg: #eef1f5;
+    --surface: #ffffff;
+    --surface-2: #f4f6f9;
+    --surface-3: #e9edf2;
+    --border: #d8dee6;
+    --border-strong: #b7c1cc;
+    --text: #1c2530;
+    --text-2: #4d5a68;
+    --text-3: #7d8a99;
+
+    --accent: #1a7f37;
+    --accent-hover: #156a2e;
+    --accent-contrast: #ffffff;
+    --accent-tint: rgba(26, 127, 55, 0.10);
+    --accent-ring: rgba(26, 127, 55, 0.35);
+
+    --danger: #c93a35;
+    --danger-hover: #ad2d29;
+    --danger-tint: rgba(201, 58, 53, 0.10);
+
+    /* Prompt-element chips stay ink-dark in both themes (terminal tokens) */
+    --chip-bg: #232b38;
+    --chip-bg-hover: #2c3543;
+    --chip-text: #e8edf4;
+    --chip-border: #323c4c;
+
+    /* Terminal preview is always dark — it is a terminal */
+    --term-bg: #0c1017;
+    --term-chrome: #161c26;
+    --term-border: #262f3d;
+    --term-text: #2ee66b;
+    --term-title: #8b98a9;
+
+    --radius-sm: 6px;
+    --radius: 8px;
+    --radius-lg: 12px;
+
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0 1px 3px rgba(16, 24, 40, 0.07), 0 4px 12px rgba(16, 24, 40, 0.06);
+
+    --scrollbar-thumb: #c2cbd6;
+    --scrollbar-thumb-hover: #a8b3c0;
+}
+
+html.dark {
+    --bg: #0d1117;
+    --surface: #161c25;
+    --surface-2: #1c2430;
+    --surface-3: #232c3a;
+    --border: #29323f;
+    --border-strong: #3a4554;
+    --text: #e6edf3;
+    --text-2: #9aa7b6;
+    --text-3: #6c7987;
+
+    --accent: #3fb950;
+    --accent-hover: #4bcb5d;
+    --accent-contrast: #06170b;
+    --accent-tint: rgba(63, 185, 80, 0.12);
+    --accent-ring: rgba(63, 185, 80, 0.40);
+
+    --danger: #f16a63;
+    --danger-hover: #f4837d;
+    --danger-tint: rgba(241, 106, 99, 0.12);
+
+    --chip-bg: #232c3a;
+    --chip-bg-hover: #2c3646;
+    --chip-text: #e6edf3;
+    --chip-border: #364253;
+
+    --term-bg: #0a0e14;
+    --term-chrome: #131a24;
+    --term-border: #232c3a;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.35);
+
+    --scrollbar-thumb: #333e4d;
+    --scrollbar-thumb-hover: #435061;
+}
+
+/* ---------- Reset ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
 
 body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            padding: 0;
-            margin: 0;
-        }
+    font-family: var(--font-ui);
+    font-size: 15px;
+    line-height: 1.5;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
 
-.about-bash p {
-            color: #34495e;
-            line-height: 1.6;
-            text-align: center;
-        }
+button {
+    font-family: inherit;
+}
+
+input,
+select {
+    font-family: inherit;
+}
+
+/* ---------- Focus visibility ---------- */
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* ---------- Scrollbars ---------- */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
 
 ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
+    background: transparent;
+}
 
 ::-webkit-scrollbar-thumb {
-            background: #bdc3c7;
-            border-radius: 10px;
-        }
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
 
 ::-webkit-scrollbar-thumb:hover {
-            background: #95a5a6;
-        }
+    background-color: var(--scrollbar-thumb-hover);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===================================================
+   Informational content below the app
+   =================================================== */
+
+.page-info {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 56px 24px 32px;
+    margin-top: 40px;
+}
 
 .about-bash {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 14px 20px;
-        }
+    max-width: 720px;
+    margin: 0 auto 44px;
+}
 
+.about-bash h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
 
 .about-bash p {
-            max-width: 900px;
-            margin: 0 auto 12px;
-            color: #34495e;
-            line-height: 1.7;
-            text-align: center;
-        }
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
 
 .about-bash ul,
 .about-bash ol {
-            max-width: 900px;
-            margin: 0 auto 14px;
-            padding-left: 22px;
-            text-align: left;
-            color: #34495e;
-        }
+    color: var(--text-2);
+    margin: 0 0 16px;
+    padding-left: 24px;
+}
 
 .about-bash li {
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
+    margin-bottom: 8px;
+    line-height: 1.65;
+}
 
 .about-bash pre {
-            max-width: 900px;
-            margin: 10px auto 8px;
-            padding: 10px 12px;
-            border: 1px solid #dfe6ee;
-            border-radius: 8px;
-            background: #f8fafc;
-            text-align: left;
-            overflow-x: auto;
-        }
+    margin: 16px 0 8px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    overflow-x: auto;
+}
+
+.about-bash pre + p {
+    color: var(--text-3);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
 
 .about-bash code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.95em;
-        }
-.about-bash h2 {
-            text-align: center;
-        }
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    color: var(--text);
+}
+
+.about-bash pre code {
+    color: var(--accent);
+    font-size: 0.85rem;
+}
+
+.about-bash p code,
+.about-bash li code {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+}
+
+/* ---------- Footer ---------- */
 
 .site-footer {
-            width: 100%;
-            text-align: center;
-            color: #2c3e50;
-            font-size: 0.95rem;
-            padding: 14px 10px 18px;
-        }
+    max-width: 720px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-3);
+    font-size: 0.85rem;
+}
 
 .site-footer .divider {
-            margin: 0 8px;
-            color: #7f8c8d;
-        }
-
-
+    margin: 0 10px;
+    color: var(--border-strong);
+}

@@ -1,246 +1,248 @@
-﻿.elements-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
+/* ===================================================
+   Buttons & interactive components
+   =================================================== */
 
-.element-btn {
-            padding: 8px 10px;
-            background: #1a2151;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85em;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            width: auto;
-        }
+/* ---------- Element buttons (left panel) ---------- */
 
-.element-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-.element-btn:active {
-            transform: translateY(0);
-        }
-
-.element-item {
-            background: #1a2151;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: move;
-            user-select: none;
-            box-shadow: 0 4px 12px rgba(26, 33, 81, 0.3);
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            flex-shrink: 0;
-            width: auto;
-            height: 35px;
-        }
-
-.element-item:hover {
-            box-shadow: 0 6px 16px rgba(26, 33, 81, 0.5);
-            transform: translateY(-2px);
-        }
-
-.element-item.selected {
-            background: #f5576c;
-            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
-        }
-
-.element-content {
-            display: flex;
-            align-items: center;
-            gap: 0px;
-        }
-
-.element-label {
-            font-weight: 500;
-            font-size: 0.9em;
-        }
-
-.element-preview {
-            display: none;
-        }
-
-.element-actions {
-            display: flex;
-            gap: 4px;
-            margin-left: 8px;
-        }
-
-.btn-icon {
-            background: rgba(255,255,255, 0.2);
-            color: white;
-            border: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85em;
-            transition: all 0.2s ease;
-            margin-left: 4px;
-            flex-shrink: 0;
-        }
-
-.btn-icon:hover {
-            background: rgba(255,255,255, 0.3);
-            transform: scale(1.1);
-        }
-
-.btn-icon:active {
-            transform: scale(0.95);
-        }
-
-.char-btn {
-            padding: 8px 12px;
-            background: #ecf0f1;
-            border: 1px solid #bdc3c7;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            color: #2c3e50;
-            transition: all 0.2s ease;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-
-.char-btn:hover {
-            background: #d5dbdb;
-            border-color: #95a5a6;
-        }
-
-.btn-primary, .btn-secondary, .btn-danger {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-            width: auto;
-        }
-
-.btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-.btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-.btn-danger {
-            background: #e74c3c;
-            color: white;
-        }
-
-.btn-danger:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-        }
-
-.btn-secondary {
-            background: #95a5a6;
-            color: white;
-        }
-
-.btn-secondary:hover {
-            background: #7f8c8d;
-        }
-
-.copy-btn, .reset-btn, .delete-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 0.95em;
-            width: auto;
-        }
-
-.button-wrapper {
-            display: flex;
-            gap: 12px;
-            margin-top: 12px;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-.copy-btn {
-            background: #27ae60;
-            color: white;
-        }
-
-.copy-btn:hover {
-            background: #229954;
-            transform: translateY(-2px);
-        }
-
-.copy-btn.copied {
-            background: #3498db;
-        }
-
-.button-wrapper {
-            display: flex;
-            gap: 12px;
-            margin-top: 12px;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-.reset-btn {
-            background: #95a5a6;
-            color: white;
-        }
-
-.reset-btn:hover {
-            background: #7f8c8d;
-            transform: translateY(-2px);
-        }
-
-.delete-btn {
-            background: #e74c3c;
-            color: white;
-        }
-
-.delete-btn:hover {
-            background: #c0392b;
-            transform: translateY(-2px);
-        }
-
-/* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-@keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
-        }
-
+.elements-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 4px;
 }
 
-        .about-bash p {
-            color: #34495e;
-            line-height: 1.6;
-            text-align: center;
-        }
+.element-btn {
+    padding: 6px 11px;
+    background: var(--surface-2);
+    color: var(--text-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.35;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
 
+.element-btn:hover {
+    background: var(--accent-tint);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.element-btn:active {
+    background: var(--accent-tint);
+    border-color: var(--accent-hover);
+    transform: translateY(1px);
+}
+
+/* ---------- Element chips on canvas ---------- */
+
+.element-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 34px;
+    padding: 0 6px 0 12px;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--chip-border);
+    border-radius: var(--radius-sm);
+    cursor: grab;
+    user-select: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.element-item:hover {
+    background: var(--chip-bg-hover);
+    border-color: var(--border-strong);
+}
+
+.element-item:active {
+    cursor: grabbing;
+}
+
+.element-item.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-contrast);
+    box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.element-content {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.element-label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: -0.01em;
+}
+
+.element-preview {
+    display: none;
+}
+
+.element-actions {
+    display: flex;
+    gap: 2px;
+    margin-left: 8px;
+}
+
+.btn-icon {
+    background: transparent;
+    color: inherit;
+    opacity: 0.55;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    transition: opacity 0.15s ease, background-color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.btn-icon:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.element-item.selected .btn-icon:hover {
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.btn-icon:active {
+    transform: scale(0.94);
+}
+
+/* Sortable drag ghost */
+.sortable-ghost {
+    opacity: 0.4;
+    border-style: dashed;
+}
+
+/* ---------- Quick character buttons ---------- */
+
+.char-btn {
+    min-width: 32px;
+    padding: 6px 9px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.82rem;
+    color: var(--text-2);
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.char-btn:hover {
+    background: var(--accent-tint);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.char-btn:active {
+    transform: translateY(1px);
+}
+
+/* ---------- Standard buttons ---------- */
+
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.copy-btn,
+.reset-btn,
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    line-height: 1.3;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Primary (accent) */
+.btn-primary,
+.copy-btn {
+    background: var(--accent);
+    color: var(--accent-contrast);
+}
+
+.btn-primary:hover,
+.copy-btn:hover {
+    background: var(--accent-hover);
+    box-shadow: var(--shadow-sm);
+}
+
+.copy-btn.copied {
+    background: var(--accent-hover);
+}
+
+/* Secondary (quiet) */
+.btn-secondary,
+.reset-btn {
+    background: var(--surface-2);
+    color: var(--text-2);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover,
+.reset-btn:hover {
+    background: var(--surface-3);
+    border-color: var(--border-strong);
+    color: var(--text);
+}
+
+/* Danger (destructive, quiet until hover) */
+.btn-danger,
+.delete-btn {
+    background: transparent;
+    color: var(--danger);
+    border-color: var(--border);
+}
+
+.btn-danger:hover,
+.delete-btn:hover {
+    background: var(--danger-tint);
+    border-color: var(--danger);
+}
+
+/* Solid danger inside the properties panel action row */
+.property-actions-row .btn-danger {
+    background: transparent;
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-danger:active,
+.copy-btn:active,
+.reset-btn:active,
+.delete-btn:active {
+    transform: translateY(1px);
+}
+
+/* ---------- Preview cursor blink ---------- */
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}

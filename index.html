@@ -8,6 +8,9 @@
     <title>Bash Prompt Generator</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
@@ -24,14 +27,21 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="app-header">
+            <div class="header-inner">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">$_</span>
+                <div class="brand-text">
+                    <h1>Bash Prompt Generator</h1>
+                    <h2>Build custom PS1 prompts visually — preview, style, copy</h2>
+                </div>
+            </div>
             <div class="theme-switch" id="themeSwitch" onclick="toggleTheme()" role="switch" aria-label="Toggle dark/light theme">
                 <i class="fas fa-moon"></i>
                 <i class="fas fa-sun"></i>
                 <span class="theme-switch-thumb"></span>
             </div>
-            <h1>Bash Prompt Generator</h1>
-            <h2>Create custom PS1 prompts with an interactive builder</h2>
+            </div>
         </header>
 
         <div class="main-layout">
@@ -46,30 +56,49 @@
 
             <!-- Middle: Canvas -->
             <main class="canvas-section">
-                <div class="preview-inline">
-                    <h3>Preview</h3>
+                <section class="workspace-card terminal-card preview-inline" aria-label="Live prompt preview">
+                    <div class="terminal-titlebar">
+                        <span class="term-dot"></span>
+                        <span class="term-dot"></span>
+                        <span class="term-dot"></span>
+                        <span class="terminal-name">bash — live preview</span>
+                    </div>
                     <div class="preview" id="preview"></div>
-                </div>
-                <div class="canvas" id="canvas"></div>
-                <div class="special-chars-section">
-                    <div class="special-chars-title">Quick Characters</div>
+                </section>
+
+                <section class="workspace-card canvas-card" aria-label="Prompt structure">
+                    <div class="card-head">
+                        <h3>Prompt Structure</h3>
+                        <span class="card-hint">click to select · drag to reorder</span>
+                    </div>
+                    <div class="canvas" id="canvas"></div>
+                </section>
+
+                <section class="workspace-card special-chars-section" aria-label="Quick characters">
+                    <div class="card-head">
+                        <h3 class="special-chars-title">Quick Characters</h3>
+                    </div>
                     <div class="special-chars" id="specialChars"></div>
-                </div>
-                <div class="code-inline">
-                    <h3>Prompt Code</h3>
+                </section>
+
+                <section class="workspace-card code-inline" aria-label="Generated prompt code">
+                    <div class="card-head">
+                        <h3>Generated PS1</h3>
+                        <span class="card-hint">paste into ~/.bashrc</span>
+                    </div>
                     <div class="code-output" id="codeOutput"></div>
                     <div class="button-wrapper">
                         <button class="copy-btn" id="copyBtn">
                             <i class="fas fa-copy"></i> Copy to Clipboard
                         </button>
                         <button class="reset-btn" id="resetBtn">
-                            <i class="fas fa-redo"></i> Reset All
+                            <i class="fas fa-redo"></i> Reset Styles
                         </button>
                         <button class="delete-btn" id="deleteBtn">
                             <i class="fas fa-trash"></i> Delete All
                         </button>
                     </div>
-                </div>
+                </section>
             </main>
 
             <!-- Right Panel: Properties -->
@@ -85,6 +114,7 @@
             </aside>
         </div>
     </div>
+    <div class="page-info">
     <section class="about-bash">
     <h2>What is a Bash Prompt?</h2>
     <p>
@@ -220,6 +250,7 @@
 <footer class="site-footer">
         <span>&copy; 2026 neikiri</span><span class="divider">|</span><span>neikiri@neikiri.dev</span>
     </footer>
+    </div>
 
     <script src="js/elements.js"></script>
     <script src="js/state.js"></script>
