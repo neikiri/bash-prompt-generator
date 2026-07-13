@@ -1032,6 +1032,21 @@ select {
     box-shadow: 0 0 0 2px var(--accent-ring);
 }
 
+.ansi-palette .color-swatch {
+    appearance: none;
+    padding: 0;
+}
+
+.rgb-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.rgb-inputs .color-value {
+    width: 100%;
+}
+
 /* ---------- Color mode tabs ---------- */
 
 .color-mode-tabs {

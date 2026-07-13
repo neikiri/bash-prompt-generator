@@ -158,9 +158,30 @@ const PREVIEW_DATA = {
 
 /* ===== state.js ===== */
 ﻿// Global State
-        let elements = [];
-        let selectedElements = new Set();
-        let elementIdCounter = 0;
+let elements = [];
+let selectedElements = new Set();
+let elementIdCounter = 0;
+
+// Values used by the standard 16-colour ANSI palette.  Keep the CSS colour
+// alongside the SGR code so the browser preview matches the generated prompt.
+const ANSI_FOREGROUND_COLORS = [
+    { code: '30', name: 'Black', color: '#000000' },
+    { code: '31', name: 'Red', color: '#cd3131' },
+    { code: '32', name: 'Green', color: '#0dbc79' },
+    { code: '33', name: 'Yellow', color: '#e5e510' },
+    { code: '34', name: 'Blue', color: '#2472c8' },
+    { code: '35', name: 'Magenta', color: '#bc3fbc' },
+    { code: '36', name: 'Cyan', color: '#11a8cd' },
+    { code: '37', name: 'White', color: '#e5e5e5' },
+    { code: '90', name: 'Bright black', color: '#666666' },
+    { code: '91', name: 'Bright red', color: '#f14c4c' },
+    { code: '92', name: 'Bright green', color: '#23d18b' },
+    { code: '93', name: 'Bright yellow', color: '#f5f543' },
+    { code: '94', name: 'Bright blue', color: '#3b8eea' },
+    { code: '95', name: 'Bright magenta', color: '#d670d6' },
+    { code: '96', name: 'Bright cyan', color: '#29b8db' },
+    { code: '97', name: 'Bright white', color: '#ffffff' }
+];
 
         function isMobileViewport() {
             return window.innerWidth <= 768;
@@ -349,6 +370,7 @@ const PREVIEW_DATA = {
             }
 
             const selectedArray = Array.from(selectedElements).map(id => elements.find(e => e.id === id));
+            const foregroundMode = selectedArray[0]?.fgColorMode || 'hex';
             panel.innerHTML = '';
 
             // Foreground Color
@@ -357,19 +379,11 @@ const PREVIEW_DATA = {
             fgGroup.innerHTML = `
                 <div class="property-label">Foreground Color</div>
                 <div class="color-mode-tabs">
-                    <button class="color-mode-tabs button active" onclick="switchColorMode('fg', 'hex')">Hex</button>
-                    <button class="color-mode-tabs button" onclick="switchColorMode('fg', 'ansi')">ANSI</button>
-                    <button class="color-mode-tabs button" onclick="switchColorMode('fg', 'truecolor')">True</button>
+                    <button type="button" class="button ${foregroundMode === 'hex' ? 'active' : ''}" onclick="switchColorMode('fg', 'hex')">Hex</button>
+                    <button type="button" class="button ${foregroundMode === 'ansi' ? 'active' : ''}" onclick="switchColorMode('fg', 'ansi')">ANSI</button>
+                    <button type="button" class="button ${foregroundMode === 'truecolor' ? 'active' : ''}" onclick="switchColorMode('fg', 'truecolor')">True</button>
                 </div>
-                <div class="color-picker-group">
-                    <input type="color" class="color-input" id="fgColorInput" 
-                        value="${selectedArray[0]?.fgColor || '#00ff00'}"
-                        onchange="updateSelectedElements('fgColor', this.value)">
-                    <input type="text" class="color-value" id="fgValue" 
-                        value="${selectedArray[0]?.fgColor || '#00ff00'}"
-                        onchange="updateSelectedElements('fgColor', this.value)">
-                </div>
-                <div class="color-palette" id="fgPalette"></div>
+                <div id="fgColorControls"></div>
             `;
             panel.appendChild(fgGroup);
 
@@ -451,12 +465,55 @@ const PREVIEW_DATA = {
             `;
             panel.appendChild(actionsGroup);
 
-            renderColorPalette('fgPalette', 'fgColor');
+            renderForegroundColorControls(selectedArray[0], foregroundMode);
             renderColorPalette('bgPalette', 'bgColor');
         }
 
+        function renderForegroundColorControls(element, mode) {
+            const controls = document.getElementById('fgColorControls');
+            const color = normalizeHexColor(element?.fgColor, '#00ff00');
+
+            if (mode === 'ansi') {
+                const selectedCode = element?.fgAnsiCode || '32';
+                controls.innerHTML = `
+                    <select class="color-select" id="fgAnsiSelect" onchange="setAnsiForegroundColor(this.value)">
+                        ${ANSI_FOREGROUND_COLORS.map(ansi => `
+                            <option value="${ansi.code}" ${ansi.code === selectedCode ? 'selected' : ''}>${ansi.name} (${ansi.code})</option>
+                        `).join('')}
+                    </select>
+                    <div class="color-palette ansi-palette" id="fgPalette"></div>
+                `;
+                renderAnsiColorPalette();
+                return;
+            }
+
+            const rgb = hexToRgb(color);
+            const trueColorInputs = mode === 'truecolor' ? `
+                <div class="rgb-inputs" aria-label="True colour RGB values">
+                    <input type="number" class="color-value" min="0" max="255" value="${rgb.r}" aria-label="Red" oninput="updateTrueColorFromRgb('r', this.value)">
+                    <input type="number" class="color-value" min="0" max="255" value="${rgb.g}" aria-label="Green" oninput="updateTrueColorFromRgb('g', this.value)">
+                    <input type="number" class="color-value" min="0" max="255" value="${rgb.b}" aria-label="Blue" oninput="updateTrueColorFromRgb('b', this.value)">
+                </div>
+            ` : '';
+
+            controls.innerHTML = `
+                <div class="color-picker-group">
+                    <input type="color" class="color-input" id="fgColorInput"
+                        value="${color}"
+                        oninput="updateForegroundHex(this.value, '${mode}')">
+                    <input type="text" class="color-value" id="fgValue"
+                        value="${color}"
+                        spellcheck="false"
+                        onchange="updateForegroundHex(this.value, '${mode}')">
+                </div>
+                ${trueColorInputs}
+                <div class="color-palette" id="fgPalette"></div>
+            `;
+            renderColorPalette('fgPalette', 'fgColor', mode);
+        }
+
         // Render Color Palette
-        function renderColorPalette(paletteId, property) {
+        function renderColorPalette(paletteId, property, foregroundMode) {
             const palette = document.getElementById(paletteId);
             const colors = [
                 '#000000', '#ff0000', '#00ff00', '#ffff00',
@@ -469,9 +526,29 @@ const PREVIEW_DATA = {
                 swatch.className = 'color-swatch';
                 swatch.style.backgroundColor = color;
                 swatch.onclick = () => {
+                    if (property === 'fgColor') {
+                        selectedElements.forEach(id => {
+                            const elem = elements.find(e => e.id === id);
+                            if (elem) elem.fgColorMode = foregroundMode || 'hex';
+                        });
+                    }
                     updateSelectedElements(property, color);
                     renderPropertiesPanel();
                 };
+                palette.appendChild(swatch);
+            });
+        }
+
+        function renderAnsiColorPalette() {
+            const palette = document.getElementById('fgPalette');
+            ANSI_FOREGROUND_COLORS.forEach(ansi => {
+                const swatch = document.createElement('button');
+                swatch.type = 'button';
+                swatch.className = 'color-swatch';
+                swatch.style.backgroundColor = ansi.color;
+                swatch.title = `${ansi.name} (${ansi.code})`;
+                swatch.setAttribute('aria-label', ansi.name);
+                swatch.onclick = () => setAnsiForegroundColor(ansi.code);
                 palette.appendChild(swatch);
             });
         }
@@ -560,7 +637,10 @@ const PREVIEW_DATA = {
             let code = '';
 
             // Color codes
-            if (elem.fgColor && elem.fgColor !== '#00ff00') {
+            if (elem.fgColorMode === 'ansi') {
+                const ansi = ANSI_FOREGROUND_COLORS.find(color => color.code === elem.fgAnsiCode);
+                code += `\\e[${ansi ? ansi.code : '32'}m`;
+            } else if (elem.fgColor && elem.fgColor !== '#00ff00') {
                 const rgb = hexToRgb(elem.fgColor);
                 code += `\\e[38;2;${rgb.r};${rgb.g};${rgb.b}m`;
             }
@@ -589,6 +669,11 @@ const PREVIEW_DATA = {
                 g: parseInt(result[2], 16),
                 b: parseInt(result[3], 16)
             } : { r: 0, g: 255, b: 0 };
+        }
+
+        function normalizeHexColor(value, fallback) {
+            const color = String(value || '').trim();
+            return /^#[a-f\d]{6}$/i.test(color) ? color : fallback;
         }
 
         // Duplicate Element
@@ -678,6 +763,53 @@ const PREVIEW_DATA = {
             });
             renderCanvas();
             updatePreview();
+        }
+
+        function updateForegroundHex(value, mode) {
+            const color = normalizeHexColor(value, null);
+            if (!color) return;
+
+            selectedElements.forEach(id => {
+                const elem = elements.find(e => e.id === id);
+                if (elem) {
+                    elem.fgColor = color;
+                    elem.fgColorMode = mode;
+                }
+            });
+            const colorInput = document.getElementById('fgColorInput');
+            const valueInput = document.getElementById('fgValue');
+            if (colorInput) colorInput.value = color;
+            if (valueInput) valueInput.value = color;
+            renderCanvas();
+            updatePreview();
+        }
+
+        function setAnsiForegroundColor(code) {
+            const ansi = ANSI_FOREGROUND_COLORS.find(color => color.code === code);
+            if (!ansi) return;
+
+            selectedElements.forEach(id => {
+                const elem = elements.find(e => e.id === id);
+                if (elem) {
+                    elem.fgColorMode = 'ansi';
+                    elem.fgAnsiCode = ansi.code;
+                    elem.fgColor = ansi.color;
+                }
+            });
+            const select = document.getElementById('fgAnsiSelect');
+            if (select) select.value = ansi.code;
+            renderCanvas();
+            updatePreview();
+        }
+
+        function updateTrueColorFromRgb(channel, value) {
+            const component = Number(value);
+            if (!Number.isInteger(component) || component < 0 || component > 255) return;
+
+            const current = hexToRgb(normalizeHexColor(elements.find(e => selectedElements.has(e.id))?.fgColor, '#00ff00'));
+            current[channel] = component;
+            const color = `#${[current.r, current.g, current.b].map(part => part.toString(16).padStart(2, '0')).join('')}`;
+            updateForegroundHex(color, 'truecolor');
         }
 
         // Duplicate Selected Elements
@@ -785,8 +917,22 @@ const PREVIEW_DATA = {
         }
 
         function switchColorMode(type, mode) {
-            // Placeholder for color mode switching
-            console.log(`Switching ${type} to ${mode} mode`);
+            if (type !== 'fg' || !['hex', 'ansi', 'truecolor'].includes(mode)) return;
+
+            selectedElements.forEach(id => {
+                const elem = elements.find(e => e.id === id);
+                if (!elem) return;
+
+                elem.fgColorMode = mode;
+                if (mode === 'ansi' && !ANSI_FOREGROUND_COLORS.some(color => color.code === elem.fgAnsiCode)) {
+                    elem.fgAnsiCode = '32';
+                    elem.fgColor = ANSI_FOREGROUND_COLORS.find(color => color.code === '32').color;
+                }
+            });
+
+            renderCanvas();
+            renderPropertiesPanel();
+            updatePreview();
         }
 
 
