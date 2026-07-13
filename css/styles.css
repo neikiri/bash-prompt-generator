@@ -611,6 +611,78 @@ select {
     padding: 14px 18px 18px;
 }
 
+/* ===================================================
+   Example prompt
+   =================================================== */
+
+.example-prompt-body {
+    padding: 10px 18px 16px;
+}
+
+.example-prompt-code {
+    margin: 0;
+    padding: 9px 11px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.45;
+    color: var(--text-2);
+    white-space: nowrap;
+}
+
+.example-terminal-preview {
+    margin-top: 9px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    border: 1px solid var(--term-border);
+    border-radius: var(--radius-sm);
+    background: var(--term-bg);
+    color: #d8e0ec;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.35;
+    white-space: nowrap;
+}
+
+.example-time { color: #5fd7ff; }
+.example-separator { color: #ffffaf; }
+.example-directory { color: #d7afff; }
+.example-writable { color: #87ff87; }
+.example-read-only,
+.example-root { color: #ff5f5f; }
+.example-user { color: #87ff87; }
+.example-default { color: #d8e0ec; }
+
+.prompt-legend {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px 12px;
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.prompt-legend li {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    min-width: 0;
+    color: var(--text-3);
+    font-size: 0.69rem;
+    line-height: 1.35;
+}
+
+.legend-token {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+}
+
+
 /* Legacy containers kept for JS compatibility */
 .preview-section,
 .preview-container,
@@ -1032,21 +1104,6 @@ select {
     box-shadow: 0 0 0 2px var(--accent-ring);
 }
 
-.ansi-palette .color-swatch {
-    appearance: none;
-    padding: 0;
-}
-
-.rgb-inputs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-}
-
-.rgb-inputs .color-value {
-    width: 100%;
-}
-
 /* ---------- Color mode tabs ---------- */
 
 .color-mode-tabs {
@@ -1316,6 +1373,26 @@ select {
         padding: 10px 14px 0;
     }
 
+    .example-prompt-body {
+        padding: 10px 14px 14px;
+    }
+
+    .prompt-legend {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px 10px;
+    }
+
+    .prompt-legend li {
+        display: grid;
+        gap: 2px;
+        font-size: 0.7rem;
+    }
+
+    .legend-token {
+        font-size: 0.69rem;
+        line-height: 1.25;
+    }
+
     .canvas {
         margin: 10px 14px 14px;
         padding: 12px;
@@ -1411,6 +1488,12 @@ select {
 
     .about-bash h2 {
         font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .prompt-legend {
+        grid-template-columns: 1fr;
     }
 }
 

@@ -228,6 +228,25 @@
                         <button class="delete-btn" id="deleteBtn"> <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg> Delete All </button>
                     </div>
                 </section>
+                <section class="workspace-card example-prompt-card" aria-label="Example prompt">
+                    <div class="card-head">
+                        <div class="panel-title">Example Prompt</div><span class="card-hint">ready to use</span>
+                    </div>
+                    <div class="example-prompt-body">
+                        <pre class="example-prompt-code"><code>PS1='\''\[\e[38;5;81m\][\t]\[\e[0m\] \[\e[38;5;229m\]»\[\e[0m\] 📁 \[\e[38;5;183m\]$PWD\[\e[0m\] $([ -w . ] &amp;&amp; echo "\[\e[38;5;120m\][✓]\[\e[0m\]" || echo "\[\e[38;5;196m\][✗]\[\e[0m\]") \[\e[38;5;229m\]»\[\e[0m\] $([ "$EUID" -eq 0 ] &amp;&amp; echo "👑 \[\e[38;5;203m\]\u\[\e[0m\]" || echo "🙂 \[\e[38;5;120m\]\u\[\e[0m\]") \[\e[38;5;229m\]→\[\e[0m\] '\''</code></pre>
+                        <div class="example-terminal-preview" aria-label="Example prompt preview">
+                            <span class="example-time">[23:50:20]</span><span class="example-separator"> » </span><span class="example-default">📁 </span><span class="example-directory">/home/neikiri</span><span class="example-default"> </span><span class="example-writable">[✓]</span><span class="example-separator"> » </span><span class="example-default">🙂 </span><span class="example-user">neikiri</span><span class="example-separator"> →</span>
+                        </div>
+                        <ul class="prompt-legend" aria-label="Prompt element explanations">
+                            <li><span class="legend-token example-time">[23:50:20]</span><span>current time</span></li>
+                            <li><span class="legend-token example-separator">»</span><span>separator</span></li>
+                            <li><span class="legend-token example-directory">/home/neikiri</span><span>current directory</span></li>
+                            <li><span class="legend-token"><span class="example-writable">[✓]</span> / <span class="example-read-only">[✗]</span></span><span>writable / read-only folder</span></li>
+                            <li><span class="legend-token"><span class="example-user">🙂 neikiri</span> / 👑 <span class="example-root">root</span></span><span>current user; root is highlighted</span></li>
+                            <li><span class="legend-token example-separator">→</span><span>command marker</span></li>
+                        </ul>
+                    </div>
+                </section>
             </main>
             <!-- Right Panel: Properties -->
             <aside class="right-panel">
