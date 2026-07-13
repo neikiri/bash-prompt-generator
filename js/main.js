@@ -884,11 +884,17 @@ const PREVIEW_DATA = {
 
         window.addEventListener('resize', initMobileResponsiveness);
 
-        // Start the app after DOM is ready (scripts are loaded in <head>)
-        window.addEventListener('DOMContentLoaded', () => {
+        // Rocket Loader can execute this script after DOMContentLoaded has fired.
+        function startApp() {
             init();
             initMobileResponsiveness();
-        });
+        }
+
+        if (document.readyState === 'loading') {
+            window.addEventListener('DOMContentLoaded', startApp, { once: true });
+        } else {
+            startApp();
+        }
 
 
 
