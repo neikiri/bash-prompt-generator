@@ -233,7 +233,7 @@
                         <div class="panel-title">Example Prompt</div><span class="card-hint">ready to use</span>
                     </div>
                     <div class="example-prompt-body">
-                        <pre class="example-prompt-code"><code>PS1='\''\[\e[38;5;81m\][\t]\[\e[0m\] \[\e[38;5;229m\]»\[\e[0m\] 📁 \[\e[38;5;183m\]$PWD\[\e[0m\] $([ -w . ] &amp;&amp; echo "\[\e[38;5;120m\][✓]\[\e[0m\]" || echo "\[\e[38;5;196m\][✗]\[\e[0m\]") \[\e[38;5;229m\]»\[\e[0m\] $([ "$EUID" -eq 0 ] &amp;&amp; echo "👑 \[\e[38;5;203m\]\u\[\e[0m\]" || echo "🙂 \[\e[38;5;120m\]\u\[\e[0m\]") \[\e[38;5;229m\]→\[\e[0m\] '\''</code></pre>
+                        <pre class="example-prompt-code"><code>PS1="\[\e[38;5;81m\][\t]\[\e[0m\] \[\e[38;5;229m\]»\[\e[0m\] 📁 \[\e[38;5;183m\]\$PWD\[\e[0m\] \$([ -w . ] &amp;&amp; echo \"\[\e[38;5;120m\][✓]\[\e[0m\]\" || echo \"\[\e[38;5;196m\][✗]\[\e[0m\]\") \[\e[38;5;229m\]»\[\e[0m\] \$([ \"\$EUID\" -eq 0 ] &amp;&amp; echo \"👑 \[\e[38;5;203m\]\u\[\e[0m\]\" || echo \"🙂 \[\e[38;5;120m\]\u\[\e[0m\]\") \[\e[38;5;229m\]→\[\e[0m\] "</code></pre>
                         <div class="example-terminal-preview" aria-label="Example prompt preview">
                             <span class="example-time">[23:50:20]</span><span class="example-separator"> » </span><span class="example-default">📁 </span><span class="example-directory">/home/neikiri</span><span class="example-default"> </span><span class="example-writable">[✓]</span><span class="example-separator"> » </span><span class="example-default">🙂 </span><span class="example-user">neikiri</span><span class="example-separator"> →</span>
                         </div>

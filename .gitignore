@@ -22,3 +22,4 @@ Desktop.ini
 # Misc
 .env
 .env.local
+.claude/settings.local.json

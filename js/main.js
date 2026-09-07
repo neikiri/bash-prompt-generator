@@ -22,7 +22,7 @@ const ELEMENT_CATEGORIES = {
     ],
     'User': [
         { id: 'username', name: 'Username', code: '\\u', preview: 'neiki', icon: 'USR' },
-        { id: 'user_root', name: 'User / Root indicator', code: '\\#', preview: '$', icon: 'ROOT' },
+        { id: 'user_root', name: 'User / Root indicator', code: '\\$', preview: '$', icon: 'ROOT' },
         { id: 'uid', name: 'User ID', code: '\\$(id -u)', preview: '1000', icon: 'UID' }
     ],
     'Host & System': [
@@ -837,9 +837,9 @@ const ANSI_FOREGROUND_COLORS = [
             updatePreview();
         }
 
-        // Escape content for a single-quoted PS1 assignment
+        // Escape characters that would terminate or be expanded in a double-quoted PS1 assignment.
         function escapePromptContent(code) {
-            return String(code).replace(/'/g, "'\\''");
+            return String(code).replace(/["`]/g, '\\$&');
         }
         // Update Preview
         function updatePreview() {
@@ -847,7 +847,7 @@ const ANSI_FOREGROUND_COLORS = [
             const codeOutput = document.getElementById('codeOutput');
 
             let previewHtml = '';
-            let promptCode = "PS1='";
+            let promptCode = 'PS1="';
 
             elements.forEach(elem => {
                 // Generate preview text with actual values (use templateId for type)
@@ -906,9 +906,9 @@ const ANSI_FOREGROUND_COLORS = [
             });
 
             if (elements.length > 0) {
-                promptCode += "'";
+                promptCode += '"';
             } else {
-                promptCode = "PS1=''";
+                promptCode = 'PS1=""';
             }
 
             // Add cursor to preview
